@@ -1,0 +1,230 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+
+}
+
+@mixin glassmorphism {
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(4px);
+}
+
+@mixin circle($width, $height) {
+    width: $width;
+    height: $height;
+    border-radius: 50%;
+    animation: move-circ 10s ease-in-out infinite;
+}
+
+.page__container {
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    background: #15263a;
+    display: grid;
+    place-items: center;
+    position: relative;
+
+    .circ {
+        @include circle(400px, 400px);
+        background: #48f;
+        top: -200px;
+        left: -200px;
+        position: absolute;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-20deg);
+            width: 90%;
+            height: 90%;
+            border-radius: 50%;
+            background: linear-gradient(#48f 10%, #48f 50%, #cadcfd 100%);
+            filter: blur(20px);
+        }
+    }
+
+
+
+    .circ-2 {
+        @include circle(500px, 500px);
+        background: #f48;
+        bottom: -100px;
+        right: -100px;
+        position: absolute;
+        &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-40deg);
+            width: 90%;
+            height: 90%;
+            border-radius: 50%;
+            background: linear-gradient(#f48aa9 10%, #f48 50%, #f48 100%);
+            filter: blur(40px);
+        }
+    }
+
+    .circ-3 {
+        @include circle(100px, 100px );
+        background: #f84;
+        top: 5%;
+        right: 32%;
+        position: absolute;
+        &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(40deg);
+            width: 90%;
+            height: 90%;
+            border-radius: 50%;
+            background: linear-gradient(#f84 10%, #f84 50%, #ff9659 100%);
+            filter: blur(10px);
+        }
+    }
+
+
+    .card {
+        @include glassmorphism();
+        margin: 0 20px;
+        width: 400px;
+        height: 500px;
+        text-align: center;
+        color: #fff;
+        animation: appear .8s ease-in-out forwards;
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        box-shadow:  0 0 8px;
+
+        div {
+            margin-top: 10%;
+            width: 100%;    
+            display: grid;
+            place-items: center;
+
+            img {
+                width: 50%;
+                margin: auto;
+                border-radius: 50%;
+            }
+        }
+
+        h1 {
+            margin-top: 50px;
+            font-size: 1.25em;
+            font-weight: 400;
+        }
+        
+        p{
+            font-weight: 200;
+            margin-top: 5px;
+        }
+
+        .sm {
+            display: flex;
+            justify-content: center;
+            
+            a {
+                margin: 10px;
+                svg {
+                    fill: #fff;
+                }
+            }
+        }
+    }
+
+    
+}
+
+@keyframes appear {
+    from{ 
+        transform: scale(0);
+    }
+    to{ 
+        transform: scale(1);
+    }
+}
+
+@keyframes move-circ {
+    0%{ 
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(5%);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    body{
+        font-size: 40px;
+    }
+    .page__container {
+        .card {
+            width: 30%;
+            height: 90%;
+
+            .sm {
+                a {
+                    svg {
+                        margin: 0 10px;
+                        width: 50px;
+                        height: 50px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .page__container {
+        .circ-3 {
+            top: 2%;
+            right: 18%;
+        }
+
+        .card { 
+            width: 50%;
+            height: 90%;
+        }
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .page__container {
+        .circ-3{
+            right: 2%;
+        }
+
+        .card {
+            width: 80%;
+            height: 80%;
+        }
+    }
+}
+
+
+@media screen and (max-width: 325px) {
+    body{
+        font-size: 14px;
+    }
+    .page__container {
+        .card {
+            width: 80%;
+            height: 70%;
+        }
+    }
+}
